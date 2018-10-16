@@ -10,13 +10,13 @@ spring:
     min-idle: 15
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: create
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL55Dialect
         format_sql: true
         id:
           new_generator_mappings: false
+
 
 #security:
 #  jwt:
