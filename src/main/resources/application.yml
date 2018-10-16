@@ -10,13 +10,12 @@ spring:
     min-idle: 15
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: create-drop
     properties:
       hibernate:
         format_sql: true
         id:
           new_generator_mappings: false
-
 
 #security:
 #  jwt:
