@@ -1,10 +1,7 @@
 package com.wran.dto;
 
-import com.wran.model.Role;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-
-import java.util.List;
 
 @Data
 public class ClientDataDto {
@@ -15,6 +12,4 @@ public class ClientDataDto {
     private String password;
     @ApiModelProperty(position = 1)
     private String email;
-    @ApiModelProperty(position = 2)
-    private List<Role> roles;
 }

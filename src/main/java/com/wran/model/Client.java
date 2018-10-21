@@ -19,6 +19,10 @@ public class Client {
     @ElementCollection(fetch = FetchType.EAGER)
     private List<Role> roles;
 
+    @OneToOne(mappedBy = "client", cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY, optional = false)
+    private GameStatus gameStatus;
+
     public Client(){}
     public Client(String username, String password, String email, List<Role> roles){
         this.username = username;
