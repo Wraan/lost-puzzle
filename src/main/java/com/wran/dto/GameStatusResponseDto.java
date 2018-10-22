@@ -1,6 +1,7 @@
 package com.wran.dto;
 
 import com.wran.model.Item;
+import com.wran.model.Location;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -13,10 +14,12 @@ public class GameStatusResponseDto {
     @ApiModelProperty(position = 1)
     private int moves;
     @ApiModelProperty(position = 2)
-    private ResourcesResponseDto resources;
+    private Location location;
     @ApiModelProperty(position = 3)
-    private List<Item> items;
+    private ResourcesResponseDto resources;
     @ApiModelProperty(position = 4)
+    private List<Item> items;
+    @ApiModelProperty(position = 5)
     private List<String> messages;
 
 }

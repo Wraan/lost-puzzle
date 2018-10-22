@@ -18,6 +18,7 @@ public class Message {
     @GeneratedValue
     private Long id;
 
+    private String name;
     private String message;
 
     @OneToMany(mappedBy = "message", cascade = CascadeType.ALL)

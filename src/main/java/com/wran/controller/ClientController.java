@@ -22,7 +22,7 @@ import java.io.IOException;
 public class ClientController {
 
     @Autowired
-    ClientService clientService;
+    private ClientService clientService;
     @Autowired
     private ModelMapper modelMapper;
 
@@ -42,7 +42,6 @@ public class ClientController {
             return null;
         }
     }
-
     @PostMapping("/signup")
     @ApiOperation(value = "${UserController.signup}")
     @ApiResponses(value = {
@@ -57,7 +56,6 @@ public class ClientController {
             return null;
         }
     }
-
     @GetMapping(value = "/{username}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ApiOperation(value = "${UserController.search}", response = ClientResponseDto.class)
@@ -76,7 +74,6 @@ public class ClientController {
             return null;
         }
     }
-
     @DeleteMapping(value = "/{username}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ApiOperation(value = "${UserController.delete}")
@@ -95,9 +92,7 @@ public class ClientController {
             res.sendError(e.getHttpStatus().value(), e.getMessage());
             return null;
         }
-
     }
-
     @GetMapping(value = "/me")
     @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_CLIENT')")
     @ApiOperation(value = "${UserController.me}", response = ClientResponseDto.class)

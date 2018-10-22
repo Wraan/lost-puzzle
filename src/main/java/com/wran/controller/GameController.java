@@ -2,6 +2,7 @@ package com.wran.controller;
 
 import com.wran.dto.CommandDto;
 import com.wran.dto.GameStatusResponseDto;
+import com.wran.exception.CustomException;
 import com.wran.service.ClientService;
 import com.wran.service.GameStatusService;
 import io.swagger.annotations.Api;
@@ -11,6 +12,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/game")
@@ -39,8 +42,15 @@ public class GameController {
 
     @PostMapping("")
     @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_CLIENT')")
-    public GameStatusResponseDto proceedGame(@RequestBody CommandDto command, HttpServletRequest req){
-        return modelMapper.map(gameStatusService.proceedGame(clientService.whoami(req), command),
-                GameStatusResponseDto.class);
+    public GameStatusResponseDto proceedGame(@RequestBody CommandDto command, HttpServletRequest req,
+                                             HttpServletResponse res) throws IOException {
+        try{
+            return modelMapper.map(gameStatusService.proceedGame(clientService.whoami(req), command),
+                    GameStatusResponseDto.class);
+        }
+        catch (CustomException e){
+            res.sendError(e.getHttpStatus().value(), e.getMessage());
+            return null;
+        }
     }
 }

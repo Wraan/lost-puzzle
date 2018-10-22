@@ -24,12 +24,13 @@ public class GameStatus {
 
     private int moves;
     private int day;
+    private Location location = Location.Beach;
 
     @OneToMany(mappedBy = "gameStatus", cascade = CascadeType.ALL)
     private List<GameStatusMessage> messages = new ArrayList<>();
 
     @ElementCollection(fetch = FetchType.EAGER)
-    private List<Item> items;
+    private List<Item> items = new ArrayList<>();
 
     public GameStatus() {
     }

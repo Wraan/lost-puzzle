@@ -34,8 +34,7 @@ public class JwtTokenFilter extends GenericFilterBean {
         } catch (CustomException ex) {
             //TODO response doesn't show error
             HttpServletResponse response = (HttpServletResponse) res;
-            response.setStatus(ex.getHttpStatus().value());
-            //response.sendError(ex.getHttpStatus().value(), ex.getMessage());
+            response.sendError(ex.getHttpStatus().value(), ex.getMessage());
             return;
         }
         filterChain.doFilter(req, res);
